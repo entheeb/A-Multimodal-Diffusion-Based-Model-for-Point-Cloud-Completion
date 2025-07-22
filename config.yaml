@@ -1,0 +1,58 @@
+# config.yaml
+
+wandb:
+  project: pointcloud_diffusion
+
+data:
+  h5_path: /home/obaidah/point-e/point_e/dataset/train_dataset_1024.h5
+
+train:
+  batch_size: 18
+  num_workers: 8
+  epochs: 500
+  lr: 3e-4
+  weight_decay: 0.01
+  seed: 42
+  self_conditioning_prob: 0.6
+  save_every: 10
+  sample_every: 100
+  start_chamfer: 120
+  output_dir: ./outputs
+  continue_training: False
+  load_checkpoint_path: /home/obaidah/point-e/point_e/outputs/run_11-07-2025_04-08/model_epoch_350.pt  # Path to checkpoint for continuing training
+
+model:
+  num_points: 1024
+  num_latents: 256
+  cond_drop_prob: 0.1
+  input_channels: 3
+  output_channels: 3
+  latent_dim: 256
+  x_dim: 256
+  num_blocks: 6
+  num_compute_layers: 4
+  num_heads: 8
+  num_classes: 15
+  num_tokens_ppcd: 256
+  num_tokens_depth: 128
+  active_modalities: ["class", "view", "partial_pcd", "depth" ] # Active modalities for training total of ["partial_pcd", "depth", "class", "view"]
+
+diffusion:
+  gaussiandiffusion:
+    model_mean_type: epsilon
+    model_var_type: fixed_small
+    loss_type: mse
+  schedule: linear 
+  timesteps: 1000
+
+sample:
+  num_samples: 20        # Number of samples to generate during sampling
+  load_checkpoint_path: /home/obaidah/point-e/point_e/outputs/run_19-07-2025_23-23/model_epoch_600.pt  # Path to the model checkpoint for sampling
+  save_format: ply       # Supported: npz or ply
+  output_dir: ./samples_modelnet
+  guidance_scale: 3
+  use_karras: True
+  karras_steps: 64
+  sigma_min: 1e-3
+  sigma_max: 120
+  s_churn: 0.0
