@@ -1,6 +1,7 @@
 outputs/
 dataset/
 MVP/
+examples/
 partial_samples_modelnet/
 partial_samples_shapenet/
 partial_samples_shapenet11/
