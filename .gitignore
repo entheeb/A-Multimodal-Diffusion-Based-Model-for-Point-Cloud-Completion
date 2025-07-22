@@ -13,6 +13,7 @@ target_samples_shapenet/
 target_samples_shapenet11/
 wandb/
 *.pt
+*.pth
 *.lock
 *.npy
 __pycache__/
