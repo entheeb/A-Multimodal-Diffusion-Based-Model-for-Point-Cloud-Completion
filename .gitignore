@@ -1,7 +1,7 @@
 outputs/
 dataset/
 MVP/
-examples/
+examples/point_e_model_cache/
 partial_samples_modelnet/
 partial_samples_shapenet/
 partial_samples_shapenet11/
@@ -12,4 +12,7 @@ target_samples_modelnet/
 target_samples_shapenet/
 target_samples_shapenet11/
 wandb/
+*.pt
+*.lock
+*.npy
 __pycache__/
