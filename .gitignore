@@ -1,7 +1,7 @@
 outputs/
 dataset/
 MVP/
-examples/point_e_model_cache/
+examples/
 partial_samples_modelnet/
 partial_samples_shapenet/
 partial_samples_shapenet11/
