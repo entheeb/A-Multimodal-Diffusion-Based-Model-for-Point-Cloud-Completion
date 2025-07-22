@@ -1,5 +1,4 @@
 outputs/
-dataset/
 MVP/
 examples/
 partial_samples_modelnet/
@@ -16,4 +15,5 @@ wandb/
 *.pth
 *.lock
 *.npy
+*.h5
 __pycache__/
