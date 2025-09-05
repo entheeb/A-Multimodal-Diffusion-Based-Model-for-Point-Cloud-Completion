@@ -261,24 +261,12 @@ class ViewAngleEmbedding(nn.Module):
 class PartialPointCloudEncoder(nn.Module):
 
     def __init__(self, input_dim: int = 3, embed_dim: int = 256,
-                 num_tokens: int = 256, num_layers: int = 6,
+                 num_tokens: int = 256, num_layers: int = 8,
                  num_heads: int = 8, num_freqs: int = 8):
         super().__init__()
         self.embed_dim = embed_dim
         self.num_tokens = num_tokens
 
-        # Fourier positional enc
-        '''self.pos_enc = FourierPE(num_freqs=num_freqs)
-        pe_dim = 6 * num_freqs
-        in_dim_eff = input_dim + pe_dim'''
-
-        # point projection
-        '''self.input_proj = nn.Sequential(
-            nn.Linear(input_dim, embed_dim),
-            #nn.GELU(),
-            #nn.Linear(embed_dim // 2, embed_dim),
-            #nn.GELU(),
-        )'''
         self.input_proj = nn.Linear(input_dim, embed_dim)  # [B,N,embed_dim]
 
         # encoder over all 1024 points
@@ -324,8 +312,6 @@ class PartialPointCloudEncoder(nn.Module):
 
     def forward(self, pcd):
         B, N, _ = pcd.shape
-        #pe = self.pos_enc(pcd)                      # [B,N,6F]
-        #x = self.input_proj(torch.cat([pcd, pe], dim=-1))  # [B,N,D]
         x = self.input_proj(pcd)                   # [B,N,D]
 
         # prepend CLS
@@ -348,7 +334,7 @@ class PartialPointCloudEncoder(nn.Module):
 class DepthMapEncoder(nn.Module):
 
     def __init__(self, in_channels: int = 1, embed_dim: int = 256,
-                 num_tokens: int = 64, patch: int = 32, num_layers: int = 4):
+                 num_tokens: int = 64, patch: int = 32, num_layers: int = 8):
         super().__init__()
         self.embed_dim = embed_dim
         self.num_tokens = num_tokens
@@ -531,7 +517,7 @@ class TwoStreamDenoiser(nn.Module):
 
             # Full and Per-modality dropout for CFG
             full_drop_mask = torch.rand(B) < self.cond_drop_prob
-            cond_keep_mask = torch.rand(B, len(split_sizes)) >= (self.cond_drop_prob + 0.1)
+            cond_keep_mask = torch.rand(B, len(split_sizes)) >= (self.cond_drop_prob)
 
             cond_keep_mask[full_drop_mask] = False
             cond_vec_chunks = torch.split(cond_vec, split_sizes, dim=1)

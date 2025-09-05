@@ -4,10 +4,10 @@ wandb:
   project: pointcloud_diffusion
 
 data:
-  h5_path: /home/obaidah/point-e/point_e/dataset/train_dataset_1024.h5
+  h5_path: /home/obaidah/point-e/point_e/dataset/test_dataset_1024.h5
 
 train:
-  batch_size: 18
+  batch_size: 32
   num_workers: 8
   epochs: 500
   lr: 3e-4
@@ -32,10 +32,10 @@ model:
   num_blocks: 6
   num_compute_layers: 4
   num_heads: 8
-  num_classes: 15
+  num_classes: 10
   num_tokens_ppcd: 256
   num_tokens_depth: 128
-  active_modalities: ["class", "view", "partial_pcd", "depth" ] # Active modalities for training total of ["partial_pcd", "depth", "class", "view"]
+  active_modalities: ["class", "view", "partial_pcd", "depth"] # Active modalities for training total of ["partial_pcd", "depth", "class", "view"]
 
 diffusion:
   gaussiandiffusion:
@@ -46,10 +46,10 @@ diffusion:
   timesteps: 1000
 
 sample:
-  num_samples: 20        # Number of samples to generate during sampling
-  load_checkpoint_path: /home/obaidah/point-e/point_e/outputs/run_19-07-2025_23-23/model_epoch_600.pt  # Path to the model checkpoint for sampling
+  num_samples: 32    # Number of samples to generate during sampling
+  load_checkpoint_path: /home/obaidah/point-e/point_e/outputs/run_22-07-2025_23-51/model_epoch_500.pt  # Path to the model checkpoint for sampling
   save_format: ply       # Supported: npz or ply
-  output_dir: ./samples_modelnet
+  output_dir: ./samples_modelnet_test
   guidance_scale: 3
   use_karras: True
   karras_steps: 64

@@ -1,0 +1,132 @@
+2025-08-05 01:26:10,873 - INFO - Using device: cuda
+2025-08-05 01:26:10,873 - INFO - Starting evaluation...
+2025-08-05 01:26:11,486 - INFO - Loading model from /home/obaidah/point-e/point_e/outputs/run_22-07-2025_23-51/model_epoch_500.pt
+2025-08-05 01:30:48,922 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:30:48,968 - INFO - Batch 0 | CD: 0.003255 | CD½: 0.028716 | F1: 0.718936 | F1²: 0.171007 — FPS skipped
+2025-08-05 01:35:25,495 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:35:25,531 - INFO - Batch 1 | CD: 0.000511 | CD½: 0.013789 | F1: 0.953019 | F1²: 0.318337 — FPS skipped
+2025-08-05 01:40:02,146 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:40:02,182 - INFO - Batch 2 | CD: 0.003293 | CD½: 0.026717 | F1: 0.770547 | F1²: 0.194724 — FPS skipped
+2025-08-05 01:44:38,695 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:44:38,731 - INFO - Batch 3 | CD: 0.003705 | CD½: 0.025381 | F1: 0.809662 | F1²: 0.251344 — FPS skipped
+2025-08-05 01:49:15,165 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:49:15,201 - INFO - Batch 4 | CD: 0.000946 | CD½: 0.016824 | F1: 0.895403 | F1²: 0.276680 — FPS skipped
+2025-08-05 01:53:51,737 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:53:51,773 - INFO - Batch 5 | CD: 0.001177 | CD½: 0.018244 | F1: 0.881987 | F1²: 0.226009 — FPS skipped
+2025-08-05 01:58:28,355 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 01:58:28,391 - INFO - Batch 6 | CD: 0.003467 | CD½: 0.028517 | F1: 0.678894 | F1²: 0.145874 — FPS skipped
+2025-08-05 02:03:04,624 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:03:04,659 - INFO - Batch 7 | CD: 0.005926 | CD½: 0.041323 | F1: 0.496868 | F1²: 0.048215 — FPS skipped
+2025-08-05 02:07:41,037 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:07:41,073 - INFO - Batch 8 | CD: 0.012868 | CD½: 0.053598 | F1: 0.478128 | F1²: 0.069909 — FPS skipped
+2025-08-05 02:12:17,494 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:12:17,530 - INFO - Batch 9 | CD: 0.001637 | CD½: 0.022081 | F1: 0.799884 | F1²: 0.148568 — FPS skipped
+2025-08-05 02:16:53,926 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:16:53,962 - INFO - Batch 10 | CD: 0.006897 | CD½: 0.038887 | F1: 0.590918 | F1²: 0.146105 — FPS skipped
+2025-08-05 02:21:30,364 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:21:30,400 - INFO - Batch 11 | CD: 0.001333 | CD½: 0.021295 | F1: 0.838796 | F1²: 0.136529 — FPS skipped
+2025-08-05 02:26:06,859 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:26:06,895 - INFO - Batch 12 | CD: 0.000879 | CD½: 0.017729 | F1: 0.915224 | F1²: 0.167338 — FPS skipped
+2025-08-05 02:30:43,450 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:30:43,486 - INFO - Batch 13 | CD: 0.001641 | CD½: 0.023390 | F1: 0.786010 | F1²: 0.104710 — FPS skipped
+2025-08-05 02:35:19,986 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:35:20,022 - INFO - Batch 14 | CD: 0.001873 | CD½: 0.024239 | F1: 0.754966 | F1²: 0.140557 — FPS skipped
+2025-08-05 02:39:56,627 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:39:56,663 - INFO - Batch 15 | CD: 0.002340 | CD½: 0.026541 | F1: 0.745973 | F1²: 0.092579 — FPS skipped
+2025-08-05 02:44:33,201 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:44:33,237 - INFO - Batch 16 | CD: 0.003159 | CD½: 0.030649 | F1: 0.680811 | F1²: 0.060485 — FPS skipped
+2025-08-05 02:49:09,901 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:49:09,937 - INFO - Batch 17 | CD: 0.002131 | CD½: 0.028453 | F1: 0.646081 | F1²: 0.048396 — FPS skipped
+2025-08-05 02:53:46,504 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:53:46,540 - INFO - Batch 18 | CD: 0.002432 | CD½: 0.028758 | F1: 0.693035 | F1²: 0.053054 — FPS skipped
+2025-08-05 02:58:23,123 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 02:58:23,158 - INFO - Batch 19 | CD: 0.002443 | CD½: 0.028796 | F1: 0.682156 | F1²: 0.059615 — FPS skipped
+2025-08-05 03:02:59,674 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:02:59,710 - INFO - Batch 20 | CD: 0.003317 | CD½: 0.033890 | F1: 0.557588 | F1²: 0.039270 — FPS skipped
+2025-08-05 03:07:36,256 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:07:36,292 - INFO - Batch 21 | CD: 0.002009 | CD½: 0.026741 | F1: 0.723601 | F1²: 0.060398 — FPS skipped
+2025-08-05 03:12:12,632 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:12:12,668 - INFO - Batch 22 | CD: 0.004873 | CD½: 0.040928 | F1: 0.426632 | F1²: 0.028159 — FPS skipped
+2025-08-05 03:16:49,033 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:16:49,069 - INFO - Batch 23 | CD: 0.029418 | CD½: 0.067516 | F1: 0.367776 | F1²: 0.023058 — FPS skipped
+2025-08-05 03:21:25,404 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:21:25,440 - INFO - Batch 24 | CD: 0.007337 | CD½: 0.041951 | F1: 0.547145 | F1²: 0.037693 — FPS skipped
+2025-08-05 03:26:01,974 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:26:02,010 - INFO - Batch 25 | CD: 0.005175 | CD½: 0.039579 | F1: 0.497940 | F1²: 0.033910 — FPS skipped
+2025-08-05 03:30:38,641 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:30:38,677 - INFO - Batch 26 | CD: 0.004734 | CD½: 0.037910 | F1: 0.525288 | F1²: 0.044070 — FPS skipped
+2025-08-05 03:35:15,274 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:35:15,310 - INFO - Batch 27 | CD: 0.006923 | CD½: 0.044238 | F1: 0.440186 | F1²: 0.028829 — FPS skipped
+2025-08-05 03:39:51,664 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:39:51,700 - INFO - Batch 28 | CD: 0.011844 | CD½: 0.059338 | F1: 0.246660 | F1²: 0.012883 — FPS skipped
+2025-08-05 03:44:28,092 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:44:28,128 - INFO - Batch 29 | CD: 0.013183 | CD½: 0.059241 | F1: 0.297688 | F1²: 0.017381 — FPS skipped
+2025-08-05 03:49:04,489 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:49:04,525 - INFO - Batch 30 | CD: 0.011536 | CD½: 0.059862 | F1: 0.264931 | F1²: 0.016705 — FPS skipped
+2025-08-05 03:53:40,798 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:53:40,834 - INFO - Batch 31 | CD: 0.017415 | CD½: 0.072389 | F1: 0.237443 | F1²: 0.015033 — FPS skipped
+2025-08-05 03:58:16,972 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 03:58:17,007 - INFO - Batch 32 | CD: 0.011383 | CD½: 0.058815 | F1: 0.262971 | F1²: 0.017207 — FPS skipped
+2025-08-05 04:02:53,370 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:02:53,406 - INFO - Batch 33 | CD: 0.013043 | CD½: 0.063834 | F1: 0.228018 | F1²: 0.012144 — FPS skipped
+2025-08-05 04:07:29,734 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:07:29,770 - INFO - Batch 34 | CD: 0.012610 | CD½: 0.059262 | F1: 0.305581 | F1²: 0.019151 — FPS skipped
+2025-08-05 04:12:06,143 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:12:06,179 - INFO - Batch 35 | CD: 0.005436 | CD½: 0.042622 | F1: 0.429302 | F1²: 0.027424 — FPS skipped
+2025-08-05 04:16:42,494 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:16:42,530 - INFO - Batch 36 | CD: 0.004881 | CD½: 0.040836 | F1: 0.433637 | F1²: 0.029495 — FPS skipped
+2025-08-05 04:21:18,777 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:21:18,812 - INFO - Batch 37 | CD: 0.030050 | CD½: 0.086868 | F1: 0.270033 | F1²: 0.019683 — FPS skipped
+2025-08-05 04:25:55,038 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:25:55,074 - INFO - Batch 38 | CD: 0.008059 | CD½: 0.049306 | F1: 0.410174 | F1²: 0.030497 — FPS skipped
+2025-08-05 04:30:31,353 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:30:31,389 - INFO - Batch 39 | CD: 0.010371 | CD½: 0.052694 | F1: 0.394866 | F1²: 0.028169 — FPS skipped
+2025-08-05 04:35:07,711 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:35:07,747 - INFO - Batch 40 | CD: 0.002910 | CD½: 0.033108 | F1: 0.512362 | F1²: 0.032280 — FPS skipped
+2025-08-05 04:39:44,022 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:39:44,057 - INFO - Batch 41 | CD: 0.002025 | CD½: 0.028230 | F1: 0.632290 | F1²: 0.048459 — FPS skipped
+2025-08-05 04:44:20,549 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:44:20,585 - INFO - Batch 42 | CD: 0.002944 | CD½: 0.031734 | F1: 0.574501 | F1²: 0.039009 — FPS skipped
+2025-08-05 04:48:57,205 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:48:57,241 - INFO - Batch 43 | CD: 0.002243 | CD½: 0.028086 | F1: 0.666466 | F1²: 0.055087 — FPS skipped
+2025-08-05 04:53:33,775 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:53:33,811 - INFO - Batch 44 | CD: 0.002358 | CD½: 0.030523 | F1: 0.563555 | F1²: 0.039012 — FPS skipped
+2025-08-05 04:58:10,391 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 04:58:10,427 - INFO - Batch 45 | CD: 0.003614 | CD½: 0.034515 | F1: 0.545437 | F1²: 0.039230 — FPS skipped
+2025-08-05 05:02:46,869 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:02:46,905 - INFO - Batch 46 | CD: 0.010891 | CD½: 0.053221 | F1: 0.389952 | F1²: 0.036316 — FPS skipped
+2025-08-05 05:07:23,256 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:07:23,292 - INFO - Batch 47 | CD: 0.006910 | CD½: 0.043717 | F1: 0.445505 | F1²: 0.027935 — FPS skipped
+2025-08-05 05:11:59,669 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:11:59,705 - INFO - Batch 48 | CD: 0.006871 | CD½: 0.043659 | F1: 0.467900 | F1²: 0.034078 — FPS skipped
+2025-08-05 05:16:35,991 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:16:36,027 - INFO - Batch 49 | CD: 0.007512 | CD½: 0.042709 | F1: 0.516378 | F1²: 0.043395 — FPS skipped
+2025-08-05 05:21:12,321 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:21:12,357 - INFO - Batch 50 | CD: 0.007330 | CD½: 0.049172 | F1: 0.325090 | F1²: 0.018545 — FPS skipped
+2025-08-05 05:25:48,730 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:25:48,765 - INFO - Batch 51 | CD: 0.002732 | CD½: 0.033129 | F1: 0.467001 | F1²: 0.025338 — FPS skipped
+2025-08-05 05:30:25,027 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:30:25,063 - INFO - Batch 52 | CD: 0.005322 | CD½: 0.041956 | F1: 0.389373 | F1²: 0.021501 — FPS skipped
+2025-08-05 05:35:01,664 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:35:01,700 - INFO - Batch 53 | CD: 0.006080 | CD½: 0.042704 | F1: 0.412366 | F1²: 0.024911 — FPS skipped
+2025-08-05 05:39:38,028 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:39:38,064 - INFO - Batch 54 | CD: 0.003580 | CD½: 0.036103 | F1: 0.470762 | F1²: 0.027645 — FPS skipped
+2025-08-05 05:44:14,510 - INFO - Predicted point cloud resolution: 1024 points per sample
+2025-08-05 05:44:14,546 - INFO - Batch 55 | CD: 0.002961 | CD½: 0.033479 | F1: 0.506161 | F1²: 0.030574 — FPS skipped
+2025-08-05 05:44:14,615 - INFO - === Overall Metrics ===
+2025-08-05 05:44:14,615 - INFO - cd_full: 0.006282
+2025-08-05 05:44:14,615 - INFO - 
+2025-08-05 05:44:14,615 - INFO - f1_full: 0.545890
+2025-08-05 05:44:14,616 - INFO - 
+2025-08-05 05:44:14,616 - INFO - === Per-Class Metrics ===
+2025-08-05 05:44:14,616 - INFO - Class 0 (airplane):  cd_full=0.002163  cd_full_factor=0.021560  f1_full=0.840408  f1_squared_full=0.243246
+2025-08-05 05:44:14,616 - INFO - Class 1 (bench):  cd_full=0.006542  cd_full_factor=0.038656  f1_full=0.578442  f1_squared_full=0.092859
+2025-08-05 05:44:14,616 - INFO - Class 2 (bottle):  cd_full=0.001579  cd_full_factor=0.022406  f1_full=0.811617  f1_squared_full=0.135336
+2025-08-05 05:44:14,616 - INFO - Class 3 (car):  cd_full=0.002625  cd_full_factor=0.029722  f1_full=0.660755  f1_squared_full=0.053635
+2025-08-05 05:44:14,616 - INFO - Class 4 (monitor):  cd_full=0.009464  cd_full_factor=0.044522  f1_full=0.476778  f1_squared_full=0.033276
+2025-08-05 05:44:14,616 - INFO - Class 5 (night_stand):  cd_full=0.013330  cd_full_factor=0.062739  f1_full=0.256827  f1_squared_full=0.015533
+2025-08-05 05:44:14,616 - INFO - Class 6 (piano):  cd_full=0.011659  cd_full_factor=0.054876  f1_full=0.367645  f1_squared_full=0.024809
+2025-08-05 05:44:14,616 - INFO - Class 7 (sofa):  cd_full=0.003256  cd_full_factor=0.032243  f1_full=0.580857  f1_squared_full=0.042296
+2025-08-05 05:44:14,616 - INFO - Class 8 (tent):  cd_full=0.007594  cd_full_factor=0.045151  f1_full=0.448670  f1_squared_full=0.034206
+2025-08-05 05:44:14,616 - INFO - Class 9 (toilet):  cd_full=0.004628  cd_full_factor=0.039189  f1_full=0.433157  f1_squared_full=0.025074
+2025-08-05 05:44:14,617 - INFO - Evaluation finished.

@@ -19,14 +19,7 @@ def batch_fps_tensor(pcd_tensor, n_samples=1024):
 
 
 def create_downsampled_h5_full(original_h5_path, output_h5_path, n_samples=1024, device="cuda"):
-    skip_instances = {
-        "car/car_0239", "car/car_0241", "chair/chair_0940", "desk/desk_0241",
-        "dresser/dresser_0243", "dresser/dresser_0244", "dresser/dresser_0251",
-        "guitar/guitar_0158", "guitar/guitar_0191", "guitar/guitar_0194", "guitar/guitar_0205", "guitar/guitar_0216",
-        "airplane/airplane_0087", "airplane/airplane_0103", "airplane/airplane_0152", "airplane/airplane_0207",
-        "airplane/airplane_0378", "airplane/airplane_0433", "airplane/airplane_0449", "airplane/airplane_0477",
-        "airplane/airplane_0485", "airplane/airplane_0512"
-    }
+    skip_instances = {}
     with h5py.File(original_h5_path, 'r') as src, h5py.File(output_h5_path, 'w') as dst:
         for class_name in tqdm(src.keys(), desc="Processing classes"):
             if class_name == "guitar":
@@ -97,8 +90,8 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Using device: {device}")
     create_downsampled_h5_full(
-        original_h5_path="/home/obaidah/point-e/point_e/dataset/train_dataset.h5",
-        output_h5_path="/home/obaidah/point-e/point_e/dataset/train_dataset_1024.h5",
+        original_h5_path="/home/obaidah/point-e/point_e/dataset/test_dataset.h5",
+        output_h5_path="/home/obaidah/point-e/point_e/dataset/test_dataset_1024.h5",
         n_samples=1024,
         device=device
     )

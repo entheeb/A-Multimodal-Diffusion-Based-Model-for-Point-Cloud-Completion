@@ -163,7 +163,6 @@ def main(cfg):
 
         for batch in progress_bar:
             class_labels, partial_pcd, depth_maps, viewpoints, target = batch
-            #class_labels, partial_pcd, target = batch
             target = target.permute(0, 2, 1).contiguous().to(device) # [B, C, N]
 
             t = torch.randint(0, cfg.diffusion.timesteps, (target.size(0),), device=target.device)
@@ -185,7 +184,7 @@ def main(cfg):
                     _, prev_latent = model(
                         x_t, t, 
                         class_labels=class_labels, 
-                        partial_pcd=partial_pcd,
+                        #partial_pcd=partial_pcd,
                         depth_maps=depth_maps,
                         viewpoints=viewpoints,
                         prev_latent=None
@@ -329,7 +328,7 @@ def main(cfg):
 
                     print("Sampling from last batch...")
                     all_samples = []
-                    for sample in sampler_fn.sample_batch_progressive(partial_pcd.size(0), model_kwargs, x_target=None):
+                    for sample in sampler_fn.sample_batch_progressive(target.size(0), model_kwargs, x_target=None):
                         all_samples.append(sample)
                     final_samples = all_samples[-1]
 

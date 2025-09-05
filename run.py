@@ -2,7 +2,7 @@
 
 import os
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 import random
 import numpy as np
 from tqdm import tqdm
@@ -16,11 +16,11 @@ from point_e.diffusion.gaussian_diffusion import GaussianDiffusion, get_named_be
 from point_e.dataset.multimodal_dataloader import MultiModalDataset
 from point_e.util.point_cloud import PointCloud
 from point_e.dataset.mvp_dataloader import MVP_CP 
-from point_e.dataset.modelnet_dataloader import ModelnetDataset
+from point_e.dataset.modelnet_dataloader import ModelnetDataset, ModelnetDatasetTest
 
 
 def set_seed(seed):
-    seed = seed - 42
+    #seed = seed - 42
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -39,7 +39,7 @@ def save_target_point_clouds(batch_target_points, out_dir, colors=None):
     os.makedirs(out_dir, exist_ok=True)
     for i, pts in enumerate(batch_target_points):
         pcd = to_pcd(points= pts.cpu().numpy(), colors=colors)
-        o3d.io.write_point_cloud(os.path.join(out_dir, f"target_{i + 1}_shapenet.ply"), pcd)
+        o3d.io.write_point_cloud(os.path.join(out_dir, f"target_{i + 1}_modelnet.ply"), pcd)
 
 
 def load_model(cfg, device):
@@ -53,45 +53,17 @@ def load_model(cfg, device):
     return model
 
 
-def save_samples(samples, output_dir, save_format):
+def save_samples(samples, output_dir):
     os.makedirs(output_dir, exist_ok=True)
-
     for i, sample in enumerate(samples):
-        sample_np = sample.cpu().T.numpy()  # [N, C], where C is 3 (XYZ) or 6 (XYZ+RGB)
+        sample_np = sample.cpu().T.numpy()
+        coords = sample_np[:, :3].clip(-1, 1)
+        rgb = sample_np[:, 3:6] if sample_np.shape[1] >= 6 else None
+        if rgb is not None:
+            rgb = np.clip((rgb + 1) / 2, 0, 1)
+        pcd = to_pcd(points=coords, colors=rgb)
+        o3d.io.write_point_cloud(os.path.join(output_dir, f"sample_{i + 1}.ply"), pcd)
 
-        # Split XYZ
-        coords = sample_np[:, :3].clip(-1, 1)  # Clip XYZ in [-1, 1] range
-
-        # Handle RGB if exists
-        channels = {}
-        if sample_np.shape[1] >= 6:
-            rgb = sample_np[:, 3:6]
-            # Clip RGB in [0, 1] scale
-            rgb = np.clip(rgb, -1, 1)
-            rgb = (rgb + 1) / 2     # Scale to [0, 1]
-            '''channels = {
-                "R": rgb[:, 0],
-                "G": rgb[:, 1],
-                "B": rgb[:, 2],
-            }'''
-        else:
-            rgb = None
-        
-        target_pcd = to_pcd(points=coords, colors=rgb)
-        o3d.io.write_point_cloud(f"/home/obaidah/point-e/point_e/samples_modelnet/pred_{i + 1}_shapenet.ply", target_pcd)
-
-        '''# Create PointCloud object
-        pc = PointCloud(coords=coords, channels=channels)
-
-        # Save based on format
-        path = os.path.join(output_dir, f"sample_{i:03d}_colored.{save_format}")
-        if save_format == "npz":
-            pc.save(path)
-        elif save_format == "ply":
-            with open(path, "wb") as f:
-                pc.write_ply(f)
-        else:
-            raise ValueError(f"Unsupported save format: {save_format}")'''
 
 def build_dataloader(cfg):
     dataset = MultiModalDataset(h5_path=cfg.data.h5_path)
@@ -119,16 +91,18 @@ def build_dataloader_mvp(cfg):
 
 
 def build_modelnet_dataloader(cfg):
-    dataset = ModelnetDataset(h5_path=cfg.data.h5_path,)
-
+    dataset = ModelnetDatasetTest(h5_path=cfg.data.h5_path)
+    g = torch.Generator().manual_seed(cfg.train.seed)
+    indices = torch.randperm(len(dataset), generator=g)[:150]
+    subset = Subset(dataset, indices)
 
     dataloader = DataLoader(
-        dataset,
+        subset,
         batch_size=cfg.sample.num_samples,
         sampler=None,
         shuffle=False,
         num_workers=cfg.train.num_workers,
-        drop_last=True,
+        drop_last=False,
     )
 
     return dataloader
@@ -155,7 +129,7 @@ def main(cfg):
         device=device,
         models=[model],
         diffusions=[diffusion],
-        num_points=[4096],
+        num_points=[1024],
         aux_channels=[],
         guidance_scale=[cfg.sample.guidance_scale],
         clip_denoised= True,
@@ -171,8 +145,8 @@ def main(cfg):
     #x_target = target_points.clone().permute(0, 2, 1).contiguous()
     #x_target = x_target.to(device).float()  # [B, C, N]
     
-    save_target_point_clouds(target_points, "/home/obaidah/point-e/point_e/target_samples_modelnet")
-    save_target_point_clouds(partial_pcd, "/home/obaidah/point-e/point_e/partial_samples_modelnet")
+    save_target_point_clouds(target_points, "/home/obaidah/point-e/point_e/target_samples_modelnet_test")
+    save_target_point_clouds(partial_pcd, "/home/obaidah/point-e/point_e/partial_samples_modelnet_test")
 
     model_kwargs = {
                     "class_labels": class_labels.to(device),                 # [B]
@@ -190,13 +164,11 @@ def main(cfg):
     final_samples = all_samples[-1]
     print(f"Sampled {len(final_samples)} point clouds.")
     print(f"Final samples shape: {final_samples.shape}")
-    #for i, name in enumerate(['R', 'G', 'B']):
-       #print(f"{name} max: {final_samples[:, 3+i, :].max().item():.4f}, min: {final_samples[:, 3+i, :].min().item():.4f}")
 
 
     # Save to disk
     print("Saving samples...")
-    save_samples(final_samples, cfg.sample.output_dir, cfg.sample.save_format)
+    save_samples(final_samples, cfg.sample.output_dir)
     print(f"Saved to {cfg.sample.output_dir}")
 
 

@@ -5,6 +5,7 @@ import torch.nn.functional as F
 from torch.optim.lr_scheduler import LinearLR, CosineAnnealingLR, SequentialLR
 import open3d as o3d
 import os
+from scipy.spatial import cKDTree
 
 
 # --------------------------------------------------------
@@ -188,3 +189,107 @@ def save_target_point_clouds(batch_target_points, out_dir, colors=None, prefix="
     for i, pts in enumerate(batch_target_points):
         pcd = to_pcd(points= pts.cpu().numpy(), colors=colors)
         o3d.io.write_point_cloud(os.path.join(out_dir, f"{prefix}_{i + 1}.ply"), pcd)
+
+
+
+def fscore_point_cloud_batch(pred, gt, threshold=0.03):
+    """
+    Compute F-score for batched 3D point clouds using PyTorch on GPU.
+    
+    Parameters:
+        pred: (B, N, 3) predicted point clouds
+        gt:   (B, M, 3) ground truth point clouds
+        threshold: distance threshold
+    
+    Returns:
+        fscore: (B,)
+        precision: (B,)
+        recall: (B,)
+    """
+    B, N, _ = pred.shape
+    _, M, _ = gt.shape
+
+    # Compute pairwise squared distances: (B, N, M)
+    diff = pred.unsqueeze(2) - gt.unsqueeze(1)  # (B, N, M, 3)
+    dist2 = (diff ** 2).sum(-1)                 # squared distance
+
+    # Nearest neighbor distance from pred -> gt
+    min_dist_pred_gt = torch.sqrt(dist2.min(2).values)  # (B, N)
+    # Nearest neighbor distance from gt -> pred
+    min_dist_gt_pred = torch.sqrt(dist2.min(1).values)  # (B, M)
+
+    # Precision: fraction of predicted points close to GT
+    precision = (min_dist_pred_gt < threshold).float().mean(1)
+    # Recall: fraction of GT points close to predictions
+    recall = (min_dist_gt_pred < threshold).float().mean(1)
+
+    fscore = 2 * precision * recall / (precision + recall + 1e-8)
+
+    return fscore, precision, recall
+
+
+def fscore_point_cloud_batch_squared(pred, gt, threshold=1e-4):
+    """
+    Compute F-score for batched 3D point clouds using squared distances.
+
+    Parameters:
+        pred: (B, N, 3) predicted point clouds
+        gt:   (B, M, 3) ground truth point clouds
+        threshold: squared distance threshold (rho), e.g. 1e-4 or 1e-3
+
+    Returns:
+        fscore: (B,)
+        precision: (B,)
+        recall: (B,)
+    """
+    B, N, _ = pred.shape
+    _, M, _ = gt.shape
+
+    # Compute pairwise squared distances: (B, N, M)
+    diff = pred.unsqueeze(2) - gt.unsqueeze(1)  # (B, N, M, 3)
+    dist2 = (diff ** 2).sum(-1)                 # (B, N, M)
+
+    # Nearest squared distances
+    min_dist2_pred_gt = dist2.min(2).values  # (B, N)
+    min_dist2_gt_pred = dist2.min(1).values  # (B, M)
+
+    # Precision and recall using squared distance threshold
+    precision = (min_dist2_pred_gt < threshold).float().mean(1)
+    recall = (min_dist2_gt_pred < threshold).float().mean(1)
+
+    fscore = 2 * precision * recall / (precision + recall + 1e-8)
+
+    return fscore, precision, recall
+
+
+def chamfer_distance_xyz(
+        p1: torch.Tensor,
+        p2: torch.Tensor):
+        """
+        Squared-L2 Chamfer distance on XYZ only.
+
+        Args:
+        p1, p2: [B, C>=3, N] tensors.  Uses only channels 0:3.
+        Returns:
+        [B]-shaped tensor of Chamfer distances.
+        """
+        assert p1.dim() == 3 and p2.dim() == 3
+        B, C1, N1 = p1.shape
+        _, C2, N2 = p2.shape
+        assert C1 >= 3 and C2 >= 3, "Need at least XYZ channels"
+        assert p1.size(0) == p2.size(0)
+
+        # [B, N1, 3] and [B, N2, 3]
+        xyz1 = p1[:, :3, :].transpose(1, 2)
+        xyz2 = p2[:, :3, :].transpose(1, 2)
+
+        # [B, N1, N2] Euclidean distances, then square
+        dist = torch.cdist(xyz1, xyz2, p=2).pow(2)
+
+        # for each point find its nearest neighbor
+        min1 = dist.min(dim=2)[0]  # [B, N1]
+        min2 = dist.min(dim=1)[0]  # [B, N2]
+
+        # average over points, sum both directions
+        cd = min1.mean(dim=1) + min2.mean(dim=1)
+        return cd
